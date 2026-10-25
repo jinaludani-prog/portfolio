@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udani Jinal | Systems & AI Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Typed.js & ScrollReveal -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#ffffff',
+                            card: '#f8fafc',
+                            text: '#334155',
+                            heading: '#0f172a',
+                            accent: '#2563eb', /* Royal Blue */
+                            accentLight: '#dbeafe'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #334155;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+        /* Hide scrollbar for the skills slider but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Light Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Animated Background Grid - Light Mode */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(30px) translateZ(-200px); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accentLight selection:text-brand-accent">
+
+    <div class="bg-grid"></div>
+
+    <!-- Floating Navbar -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-brand-accent font-mono text-xl font-bold tracking-tighter">U.J.</a>
+            <nav class="hidden md:flex gap-8 font-mono text-sm font-semibold">
+                <a href="#about" class="nav-link hover:text-brand-accent transition-colors"><span class="text-brand-accent">01.</span> About</a>
+                <a href="#skills" class="nav-link hover:text-brand-accent transition-colors"><span class="text-brand-accent">02.</span> Toolbox</a>
+                <a href="#work" class="nav-link hover:text-brand-accent transition-colors"><span class="text-brand-accent">03.</span> Work</a>
+                <a href="#contact" class="nav-link hover:text-brand-accent transition-colors"><span class="text-brand-accent">04.</span> Contact</a>
+            </nav>
+            <button class="md:hidden text-brand-accent text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center pt-20">
+            <p class="font-mono text-brand-accent font-semibold mb-5">Hello! My name is</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-brand-heading mb-4 tracking-tight">Udani Jinal.</h1>
+            <h2 class="text-4xl md:text-6xl font-bold text-slate-500 mb-6">I build <span id="typed-text" class="text-brand-accent"></span></h2>
+            <p class="max-w-xl text-slate-600 text-lg leading-relaxed mb-10">
+                An engineering student at GLS University who loves turning wild ideas into working software. I specialize in Data, AI/ML models, Flutter apps, and bridging the gap between hardware and beautiful digital interfaces.
+            </p>
+            <div>
+                <a href="#work" class="inline-block border-2 border-brand-accent text-brand-accent font-mono font-semibold py-4 px-8 rounded hover:bg-brand-accent hover:text-white transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
+                    Check out my work!
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 border-t border-slate-200">
+            <div class="flex items-center gap-4 mb-12 reveal">
+                <h2 class="text-3xl font-bold text-brand-heading"><span class="font-mono text-brand-accent text-xl font-normal">01.</span> About Me</h2>
+                <div class="h-px bg-slate-300 flex-grow"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 text-slate-600 leading-relaxed reveal">
+                <div>
+                    <p class="mb-4">
+                        Hey there! If you're reading this, you probably want to know a bit about the human behind the screen. I'm Jinal—a curious problem solver, an engineering student at GLS University, and someone who runs on equal parts ambition and a slightly concerning amount of coffee. ☕
+                    </p>
+                    <p class="mb-4">
+                        I didn't just wake up knowing how to code. My journey started with breaking things, asking "why did that happen?", and spending hours reading documentation to put it back together. That curiosity led me to the intense, fast-paced world of hackathons. After competing in <strong>three consecutive Smart India Hackathons (2024, 2025, 2026)</strong> and the <strong>Tic Tech Toe–2026 National Hackathon</strong>, I learned something crucial: I love building things that actually matter.
+                    </p>
+                    <p class="mb-4">
+                        Whether I'm sketching out a user flow in Figma, soldering pins onto an ESP32 microcontroller, or training an AI model to detect cost anomalies, my goal is always the same: make it useful, make it scalable, and make it beautiful. 
+                    </p>
+                    <p>
+                        When I step away from the keyboard, I'm usually reading up on AI philosophy (Alan Turing's early theories fascinate me!), exploring new music, or brainstorming my next big app idea.
+                    </p>
+                </div>
+                <div class="relative group mx-auto w-3/4 md:w-full max-w-sm mt-8 md:mt-0">
+                    <div class="absolute inset-0 border-2 border-brand-accent translate-x-4 translate-y-4 rounded transition-transform group-hover:translate-x-2 group-hover:translate-y-2 z-0"></div>
+                    <!-- Replace the placeholder with a real photo of yourself! -->
+                    <img src="https://via.placeholder.com/400x400/f8fafc/2563eb?text=Jinal's+Photo" alt="Jinal Udani" class="relative z-10 rounded grayscale hover:grayscale-0 transition-all duration-500 w-full h-auto object-cover bg-white shadow-xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools & Skills Slider Section -->
+        <section id="skills" class="py-24 border-t border-slate-200">
+            <div class="flex items-center gap-4 mb-12 reveal">
+                <h2 class="text-3xl font-bold text-brand-heading"><span class="font-mono text-brand-accent text-xl font-normal">02.</span> My Digital Toolbox</h2>
+                <div class="h-px bg-slate-300 flex-grow"></div>
+            </div>
+            
+            <p class="text-slate-600 mb-8 max-w-2xl reveal">
+                I don't just memorize syntax; I use these tools as an extension of my brain to solve complex problems. Swipe or scroll through the cards below to see what I work with! 
+            </p>
+
+            <!-- Horizontal Snap Slider -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 no-scrollbar reveal cursor-grab active:cursor-grabbing">
+                
+                <!-- Tool Slide 1 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fab fa-python text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">Python & Java</h3>
+                    <p class="text-sm text-slate-600">The backbone of my logic. From writing complex API routes in FastAPI to building solid backend structures in Java.</p>
+                </div>
+
+                <!-- Tool Slide 2 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fas fa-brain text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">AI, ML & Data</h3>
+                    <p class="text-sm text-slate-600">Making sense of the noise. I train models using YOLO, OpenCV, Isolation Forests, and Autoencoders to find real patterns.</p>
+                </div>
+
+                <!-- Tool Slide 3 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fas fa-mobile-screen text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">Flutter Apps</h3>
+                    <p class="text-sm text-slate-600">I build cross-platform mobile experiences that are fast, native-feeling, and functional even when offline.</p>
+                </div>
+
+                <!-- Tool Slide 4 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fab fa-figma text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">Figma UI/UX</h3>
+                    <p class="text-sm text-slate-600">Because good code deserves good design. I love prototyping clean, accessible, and human-centric interfaces.</p>
+                </div>
+
+                <!-- Tool Slide 5 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fas fa-microchip text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">Hardware & IoT</h3>
+                    <p class="text-sm text-slate-600">Bridging the physical gap. I frequently work with ESP32-S3 boards and environmental sensors for edge deployments.</p>
+                </div>
+
+                <!-- Tool Slide 6 -->
+                <div class="snap-center shrink-0 w-72 glass p-8 rounded-xl shadow-lg border border-slate-200 hover:border-brand-accent transition-colors">
+                    <i class="fas fa-database text-4xl text-brand-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-brand-heading mb-2">Neo4j & APIs</h3>
+                    <p class="text-sm text-slate-600">Storing data smartly. I use Graph Databases (Neo4j) for complex relationship mapping and RESTful APIs to tie it all together.</p>
+                </div>
+
+            </div>
+            
+            <div class="flex justify-center mt-2 text-slate-400 text-sm animate-pulse">
+                <i class="fas fa-arrows-alt-h mr-2"></i> Scroll horizontally to see more
+            </div>
+        </section>
+
+        <!-- Work / Projects Section -->
+        <section id="work" class="py-24 border-t border-slate-200">
+            <div class="flex items-center gap-4 mb-12 reveal">
+                <h2 class="text-3xl font-bold text-brand-heading"><span class="font-mono text-brand-accent text-xl font-normal">03.</span> Things I'm Proud Of</h2>
+                <div class="h-px bg-slate-300 flex-grow"></div>
+            </div>
+
+            <div class="space-y-24">
+                
+                <!-- Project 1 -->
+                <div class="relative grid md:grid-cols-12 items-center gap-4 reveal">
+                    <div class="md:col-span-7 relative z-10 glass p-8 rounded shadow-xl">
+                        <p class="font-mono text-brand-accent text-sm font-semibold mb-2">Tic Tech Toe 2026 | DAIICT</p>
+                        <h3 class="text-2xl font-bold text-brand-heading mb-4">Cloud FinOps Intelligence</h3>
+                        <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                            An AI-powered multi-cloud cost anomaly detection and spend forecasting system. Selected for the offline round, this platform utilizes Z-Score, Isolation Forests, and LSTM Autoencoders to detect spending deviations and "zombie" resources. This carbon-conscious optimization approach successfully achieved a ~10% reduction in cloud costs and ~24% reduction in carbon emissions.
+                        </p>
+                        <ul class="flex flex-wrap gap-4 font-mono text-xs font-semibold text-slate-700 mb-6 bg-slate-100 p-3 rounded border border-slate-200">
+                            <li>AI/ML</li>
+                            <li>LSTM Autoencoder</li>
+                            <li>Cloud FinOps</li>
+                            <li>Python</li>
+                        </ul>
+                        <div class="flex gap-4 text-xl text-slate-600">
+                            <a href="https://github.com/jinaludani-prog" target="_blank" class="hover:text-brand-accent transition-colors" title="GitHub Repo"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:col-span-5 relative h-full">
+                        <div class="absolute inset-0 bg-brand-accent/10 rounded hover:bg-transparent transition-all duration-300 z-10"></div>
+                        <img src="https://via.placeholder.com/600x400/e2e8f0/2563eb?text=Cloud+FinOps" alt="Cloud FinOps Intelligence" class="rounded object-cover h-full w-full grayscale hover:grayscale-0 shadow-lg">
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="relative grid md:grid-cols-12 items-center gap-4 reveal text-left md:text-right">
+                    <div class="hidden md:block md:col-span-5 relative h-full">
+                        <div class="absolute inset-0 bg-brand-accent/10 rounded hover:bg-transparent transition-all duration-300 z-10"></div>
+                        <img src="https://via.placeholder.com/600x400/e2e8f0/2563eb?text=Skincare+Synergy" alt="Skincare Synergy" class="rounded object-cover h-full w-full grayscale hover:grayscale-0 shadow-lg">
+                    </div>
+                    <div class="md:col-span-7 relative z-10 glass p-8 rounded shadow-xl">
+                        <p class="font-mono text-brand-accent text-sm font-semibold mb-2">Capstone Project</p>
+                        <h3 class="text-2xl font-bold text-brand-heading mb-4">Skincare Synergy</h3>
+                        <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                            A hybrid neuro-symbolic platform analyzing ingredient interactions. Supervised by Dr. Aakanksha Jain, this system integrates Google Cloud Vision OCR, custom spaCy NER, and a Neo4j clinical knowledge graph, delivering insights via an on-device SLM with a Groq Cloud fallback.
+                        </p>
+                        <ul class="flex flex-wrap md:justify-end gap-4 font-mono text-xs font-semibold text-slate-700 mb-6 bg-slate-100 p-3 rounded border border-slate-200">
+                            <li>Flutter</li>
+                            <li>Python/FastAPI</li>
+                            <li>Neo4j</li>
+                            <li>AI/ML</li>
+                        </ul>
+                        <div class="flex md:justify-end gap-4 text-xl text-slate-600">
+                            <a href="https://github.com/jinaludani-prog" target="_blank" class="hover:text-brand-accent transition-colors" title="GitHub Repo"><i class="fab fa-github"></i></a>
+                            <a href="#" class="hover:text-brand-accent transition-colors" title="External Link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="relative grid md:grid-cols-12 items-center gap-4 reveal">
+                    <div class="md:col-span-7 relative z-10 glass p-8 rounded shadow-xl">
+                        <p class="font-mono text-brand-accent text-sm font-semibold mb-2">SIH 2026 Innovation</p>
+                        <h3 class="text-2xl font-bold text-brand-heading mb-4">SmartKheti</h3>
+                        <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                            Building upon my experiences from previous hackathons, I developed an offline-capable IoT field station and companion app for comprehensive agricultural monitoring. It integrates an ESP32-S3 microcontroller with multiple sensors to track soil metrics locally.
+                        </p>
+                        <ul class="flex flex-wrap gap-4 font-mono text-xs font-semibold text-slate-700 mb-6 bg-slate-100 p-3 rounded border border-slate-200">
+                            <li>ESP32-S3</li>
+                            <li>Flutter App</li>
+                            <li>Data Processing</li>
+                            <li>Figma UI/UX</li>
+                        </ul>
+                        <div class="flex gap-4 text-xl text-slate-600">
+                            <a href="https://github.com/jinaludani-prog" target="_blank" class="hover:text-brand-accent transition-colors" title="GitHub Repo"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:col-span-5 relative h-full">
+                        <div class="absolute inset-0 bg-brand-accent/10 rounded hover:bg-transparent transition-all duration-300 z-10"></div>
+                        <img src="https://via.placeholder.com/600x400/e2e8f0/2563eb?text=SmartKheti" alt="SmartKheti" class="rounded object-cover h-full w-full grayscale hover:grayscale-0 shadow-lg">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 text-center max-w-2xl mx-auto reveal border-t border-slate-200 mt-12">
+            <p class="font-mono text-brand-accent font-semibold mb-4">04. What's Next?</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-brand-heading mb-6">Let's Connect</h2>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                Whether you want to discuss a new app idea, chat about the latest ML models, talk hackathons, or just say hi, my inbox is always open!
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-10 text-lg font-mono text-slate-700">
+                <div>
+                    <i class="fas fa-envelope text-brand-accent mr-2"></i> 
+                    <a href="mailto:jinaludani@gmail.com" class="hover:text-brand-accent transition-colors">jinaludani@gmail.com</a>
+                </div>
+                <div class="hidden md:block text-slate-300">|</div>
+                <div>
+                    <i class="fas fa-phone-alt text-brand-accent mr-2"></i> 
+                    <a href="tel:+919904922022" class="hover:text-brand-accent transition-colors">9904922022</a>
+                </div>
+            </div>
+
+            <a href="mailto:jinaludani@gmail.com" class="inline-block border-2 border-brand-accent bg-brand-accent text-white font-mono font-semibold py-4 px-8 rounded hover:bg-blue-700 hover:border-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/40">
+                Say Hello
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-6 text-center text-slate-500 font-mono text-sm reveal">
+            <div class="flex justify-center gap-6 mb-4 text-xl">
+                <a href="https://github.com/jinaludani-prog" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/udani-jinal-8510463" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/jinal821" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p><a href="#" class="hover:text-brand-accent transition-colors">Designed & Built by Udani Jinal</a></p>
+        </footer>
+    </main>
+
+    <!-- Scripts for Animations -->
+    <script>
+        // Typing Animation
+        var typed = new Typed('#typed-text', {
+            strings: ['Intelligent Data Systems.', 'Mobile Applications.', 'Creative UI/UX.', 'Machine Learning Models.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // ScrollReveal Animations
+        ScrollReveal().reveal('.reveal', { 
+            delay: 200,
+            distance: '50px',
+            duration: 1000,
+            easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            interval: 100,
+            origin: 'bottom',
+            reset: false
+        });
+
+        // Navbar Style on Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.classList.add('bg-white/95', 'shadow-md');
+            } else {
+                navbar.style.padding = '16px 0';
+                navbar.classList.remove('bg-white/95', 'shadow-md');
+            }
+        });
+
+        // Optional: Simple Drag to Scroll logic for the Skills Slider
+        const slider = document.querySelector('.snap-x');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.scrollSnapType = 'none'; // Temporarily disable snapping for smooth drag
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.scrollSnapType = 'x mandatory';
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.scrollSnapType = 'x mandatory';
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast multiplier
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
